@@ -3,17 +3,9 @@
 }
 
 html {
-  background: #2c3e50; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to left,
-    #2c3e50,
-    #b6615d
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #2c3e50,
-    #fd746c
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #2c3e50;
+  background: -webkit-linear-gradient(to left, #2c3e50, #b6615d);
+  background: linear-gradient(to left, #2c3e50, #fd746c);
 }
 
 .searchWrapper {
@@ -47,24 +39,44 @@ input[type='text'] {
   font-size: 1.5rem;
 }
 
-.viewMore {
+.viewMore img {
   text-decoration: none;
   font-size: 25px;
 
   border-radius: 6px;
   background-color: rgb(68, 68, 157);
   color: white;
-  height: 100px;
+  height: 70px;
   width: 100px;
+}
+
+#poster {
+  border-radius: 5px;
+}
+
+#poster:hover {
+  cursor: pointer;
+}
+
+.movieContainer:hover .movie {
+  filter: blur(3px);
+  opacity: 0.5;
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+.movieContainer:hover .movie:hover {
+  transform: scale(1);
+  filter: blur(0px);
+  opacity: 1;
 }
 
 .movie {
   text-align: center;
   color: rgb(31, 22, 22);
-}
-
-.movie:hover {
-  cursor: pointer;
+  overflow: hidden;
+  border: 5px solid black;
+  object-fit: fill;
 }
 
 .movieFront {
@@ -72,7 +84,6 @@ input[type='text'] {
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   gap: 10px;
-  color: brown;
 }
 
 .movieBack {
@@ -82,11 +93,6 @@ input[type='text'] {
 .movieSumContainer {
   display: flex;
   justify-content: space-evenly;
-}
-
-.posterDiv,
-.summaryContainer {
-  padding: 10px;
 }
 
 .actorContainer {
