@@ -44,10 +44,8 @@ const renderOmdbSummary = async (imdbID) => {
     let data = await response.json();
     // console.log(data);
     movieBack.innerHTML = `
-        <div class="movieSumContainer">  
-        <div class="posterDiv">
-        <img id="poster" src="${data.Poster}">
-        </div>
+        <div class="movieSumContainer">         
+        <img id="poster" src="${data.Poster}">       
         <div class="summaryContainer">
         <h2>Title:${data.Title}</h2>
         <p class="imdbRating">IMDB Rating: ${data.imdbRating}/10⭐️</p>
@@ -55,7 +53,7 @@ const renderOmdbSummary = async (imdbID) => {
         <p class="info">Genre: ${data.Genre}</p>
         <p class="info">Summary: ${data.Plot}</p>
         <p class="info">Runtime: ${data.Runtime}</p>
-        <a class="viewMore" target="_blank" href="https://www.imdb.com/title/${data.imdbID}/">View more..</a>        
+        <a class="viewMore" target="_blank" href="https://www.imdb.com/title/${data.imdbID}/"><img src="imdb-logo.png"></a>        
         </div>
         </div>
         `;
@@ -74,20 +72,28 @@ const renderOmdbSummary = async (imdbID) => {
 const renderActors = async (actorToSearchFor) => {
   for (let i = 0; i < actorToSearchFor.length; i++) {
     try {
-      console.log(actorToSearchFor[i]);
       let response = await fetch(
         `http://api.tvmaze.com/search/people?q=${actorToSearchFor[i]}`
       );
       let data = await response.json();
 
-      actorContainer.innerHTML += `
-      <div class="actor">      
-      <img src="${data[0].person.image.original}">
-      <h2 style="text-align: center;">${data[0].person.name}</h2>
-      </div>
-      `;
+      console.log(data[i]);
 
-      console.log(data[0].person.image.original);
+      if (data[0].person.image === null) {
+        actorContainer.innerHTML += `
+          <div class="actor">                 
+          <img src="http://static.tvmaze.com/images/no-img/no-img-portrait-text.png">                  
+          <a href="${data[0].person.url}" target="_blank"><h2 style="text-align: center;">${data[0].person.name}</h2>
+          </div>
+          `;
+      } else {
+        actorContainer.innerHTML += `
+        <div class="actor">                  
+        <img src="${data[0].person.image.medium}">
+        <a href="${data[0].person.url}" target="_blank"><h2 style="text-align: center;">${data[0].person.name}</h2></a>
+        </div>
+        `;
+      }
     } catch (err) {
       console.log(err);
     }
