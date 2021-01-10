@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #2c3e50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #2c3e50,
+    #b6615d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #2c3e50,
+    #fd746c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.searchWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+input[type='text'] {
+  width: 50%;
+  height: 50px;
+  font-size: 1.5rem;
+  border-radius: 6px;
+}
+
+#searchAgain {
+  display: none;
+  background-color: rgb(68, 68, 157);
+  color: white;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  height: 65px;
+  cursor: pointer;
+}
+
+.info {
+  font-size: 1.5rem;
+}
+
+.imdbRating {
+  font-size: 1.5rem;
+}
+
+.viewMore {
+  text-decoration: none;
+  font-size: 25px;
+
+  border-radius: 6px;
+  background-color: rgb(68, 68, 157);
+  color: white;
+  height: 100px;
+  width: 100px;
+}
+
+.movie {
+  text-align: center;
+  color: rgb(31, 22, 22);
+}
+
+.movie:hover {
+  cursor: pointer;
+}
+
+.movieFront {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  gap: 10px;
+  color: brown;
+}
+
+.movieBack {
+  color: white;
+}
+
+.movieSumContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.posterDiv,
+.summaryContainer {
+  padding: 10px;
+}
+
+.actorContainer {
+  display: flex;
+  justify-content: center;
+  height: 150px;
+}
+
+.actor {
+  height: 250px;
+  padding: 20px;
+}
+.actor img {
+  border-radius: 6px;
+  height: 350px;
+  border-radius: 9px;
+}
+
+.errorMessage {
+  background-color: deeppink;
+  color: black;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  border-radius: 10px;
+}
