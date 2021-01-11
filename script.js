@@ -17,14 +17,24 @@ const renderOmdbData = async (search) => {
     if (data.Search) {
       for (let i = 0; i < 10; i++) {
         const value = data.Search[i];
-
-        movieFront.innerHTML += `
-          <div class="movie">
-          <div class="moviePoster">
-          <img id="test" src="${value.Poster}" onclick="renderOmdbSummary('${value.imdbID}')">    
-          </div>  
+        console.log(value);
+        if (value.Poster === 'N/A') {
+          movieFront.innerHTML += `
+          <div class="movie">               
+          <div class="noPoster" onclick="renderOmdbSummary('${value.imdbID}')">  
+          <p class="noPosterText">${value.Title}</p>           
+          </div>              
           </div>
           `;
+        } else {
+          movieFront.innerHTML += `
+            <div class="movie">
+            <div class="moviePoster">
+            <img id="test" src="${value.Poster}" onclick="renderOmdbSummary('${value.imdbID}')">    
+            </div>  
+            </div>
+            `;
+        }
       }
     } else {
       movieFront.innerHTML = `
@@ -44,21 +54,39 @@ const renderOmdbSummary = async (imdbID) => {
       `http://www.omdbapi.com/?i=${imdbID}&apikey=${apiKey}`
     );
     let data = await response.json();
-    // console.log(data);
-    movieBack.innerHTML = `
-        <div class="movieSumContainer">         
-        <img id="poster" src="${data.Poster}">       
-        <div class="summaryContainer">
-        <h2>Title:${data.Title}</h2>
-        <p class="imdbRating">IMDB Rating: ${data.imdbRating}/10⭐️</p>
-        <p class="info">Year: ${data.Year}</p>
-        <p class="info">Genre: ${data.Genre}</p>
-        <p class="info">Summary: ${data.Plot}</p>
-        <p class="info">Runtime: ${data.Runtime}</p>
-        <a class="viewMore" target="_blank" href="https://www.imdb.com/title/${data.imdbID}/"><img src="imdb-logo.png"></a>        
-        </div>
-        </div>
-        `;
+    if (data.Poster === 'N/A') {
+      movieBack.innerHTML = `
+          <div class="movieSumContainer">         
+          <div class="posterSummary">  
+          <p class="posterSummaryText">${data.Title}</p>           
+          </div>       
+          <div class="summaryContainer">
+          <h2>Title:${data.Title}</h2>
+          <p class="imdbRating">IMDB Rating: ${data.imdbRating}/10⭐️</p>
+          <p class="info">Year: ${data.Year}</p>
+          <p class="info">Genre: ${data.Genre}</p>
+          <p class="info">Summary: ${data.Plot}</p>
+          <p class="info">Runtime: ${data.Runtime}</p>
+          <a class="viewMore" target="_blank" href="https://www.imdb.com/title/${data.imdbID}/"><img src="imdb-logo.png"></a>        
+          </div>
+          </div>
+          `;
+    } else {
+      movieBack.innerHTML = `
+          <div class="movieSumContainer">         
+          <img id="poster" src="${data.Poster}">       
+          <div class="summaryContainer">
+          <h2>Title:${data.Title}</h2>
+          <p class="imdbRating">IMDB Rating: ${data.imdbRating}/10⭐️</p>
+          <p class="info">Year: ${data.Year}</p>
+          <p class="info">Genre: ${data.Genre}</p>
+          <p class="info">Summary: ${data.Plot}</p>
+          <p class="info">Runtime: ${data.Runtime}</p>
+          <a class="viewMore" target="_blank" href="https://www.imdb.com/title/${data.imdbID}/"><img src="imdb-logo.png"></a>        
+          </div>
+          </div>
+          `;
+    }
 
     let actorToSearchFor = data.Actors.split(',', 5);
     console.log(actorToSearchFor);
