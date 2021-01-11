@@ -31,12 +31,11 @@ input[type='text'] {
   cursor: pointer;
 }
 
-.info {
+.info,
+.imdbRating,
+h2 {
   font-size: 1.5rem;
-}
-
-.imdbRating {
-  font-size: 1.5rem;
+  color: #bab5bd;
 }
 
 .viewMore img {
@@ -50,33 +49,8 @@ input[type='text'] {
   width: 100px;
 }
 
-#poster {
-  border-radius: 5px;
-}
-
-#poster:hover {
+.moviePoster:hover {
   cursor: pointer;
-}
-
-.movieContainer:hover .movie {
-  filter: blur(3px);
-  opacity: 0.5;
-  transform: scale(0.98);
-  box-shadow: none;
-}
-
-.movieContainer:hover .movie:hover {
-  transform: scale(1);
-  filter: blur(0px);
-  opacity: 1;
-}
-
-.movie {
-  text-align: center;
-  color: rgb(31, 22, 22);
-  overflow: hidden;
-  border: 5px solid black;
-  object-fit: fill;
 }
 
 .movieFront {
@@ -84,10 +58,7 @@ input[type='text'] {
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   gap: 10px;
-}
-
-.movieBack {
-  color: white;
+  padding: 50px 0px 0px 100px;
 }
 
 .movieSumContainer {

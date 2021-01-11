@@ -20,7 +20,9 @@ const renderOmdbData = async (search) => {
 
         movieFront.innerHTML += `
           <div class="movie">
-          <img id="poster" src="${value.Poster}" onclick="renderOmdbSummary('${value.imdbID}')">      
+          <div class="moviePoster">
+          <img id="test" src="${value.Poster}" onclick="renderOmdbSummary('${value.imdbID}')">    
+          </div>  
           </div>
           `;
       }
@@ -82,15 +84,15 @@ const renderActors = async (actorToSearchFor) => {
       if (data[0].person.image === null) {
         actorContainer.innerHTML += `
           <div class="actor">                 
-          <img src="http://static.tvmaze.com/images/no-img/no-img-portrait-text.png">                  
-          <a href="${data[0].person.url}" target="_blank"><h2 style="text-align: center;">${data[0].person.name}</h2>
+          <a href="${data[0].person.url}" target="_blank"><img src="http://static.tvmaze.com/images/no-img/no-img-portrait-text.png"></a>                  
+         <h2 style="text-align: center;">${data[0].person.name}</h2>
           </div>
           `;
       } else {
         actorContainer.innerHTML += `
         <div class="actor">                  
-        <img src="${data[0].person.image.medium}">
-        <a href="${data[0].person.url}" target="_blank"><h2 style="text-align: center;">${data[0].person.name}</h2></a>
+        <a href="${data[0].person.url}" target="_blank"><img src="${data[0].person.image.medium}"></a>
+        <h2 style="text-align: center;">${data[0].person.name}</h2>
         </div>
         `;
       }
@@ -105,6 +107,7 @@ searchAgain.addEventListener('click', () => {
   movieBack.innerHTML = '';
   actorContainer.innerHTML = '';
   searchMovie.style.display = 'block';
+  searchBar.value = '';
 });
 
 searchBar.addEventListener('keyup', () => {
@@ -118,5 +121,3 @@ searchBar.addEventListener('keyup', () => {
     actorContainer.innerHTML = '';
   }
 });
-
-const flipPoster = () => {};
